@@ -1,0 +1,26 @@
+<div class="user">
+  <div class="options">
+    <div class="btns">
+      <div class="btn" (click)="selectRates()">Изменить курс</div>
+      <div class="btn" (click)="selectRestrictions()">Изменить ограничения</div>
+      <div class="btn" (click)="getHistory()">История операций</div>
+    </div>
+    <div class="selected" *ngIf="isRates">
+      <div class="text-bold">Установите новые курсы валют:</div>
+      <form (ngSubmit)="submitRates($event)">
+        <label>Покупка:</label>
+        <input name="buy" value="0.00">
+        <label>Продажа:</label>
+        <input name="sell" value="0.00">
+        <button type="submit" class="btn btn-skyblue">Изменить</button>
+      </form>
+    </div>
+    <div class="selected" *ngIf="isRestrictions">
+      <div class="text-bold">Установите ограничения:</div>
+      <form (ngSubmit)="submitRestr($event)">
+        <input name="restr" value="0">
+        <button type="submit" class="btn btn-skyblue">Изменить</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+:root {
+  --gray: #939393;
+  --green: #1ca754;
+  --darkblue: #1c2431;
+  --purple: #671584;
+  --skyblue: #5c85ec;
+  --yellow: #fedd02;
+  --red: #fe5a3f;
+  --pink: #edbbb2;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  background: #fff;
+  color: #333;
+}
+
+.text-bold {
+  font-weight: 600;
+}
