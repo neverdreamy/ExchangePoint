@@ -1,4 +1,5 @@
 # ExchangePoint
+Технологии программирования 2021. Преподаватель: Лишаненко Владимир.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.3.
 
