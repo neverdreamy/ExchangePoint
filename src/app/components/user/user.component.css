@@ -12,7 +12,10 @@
 }
 
 .options {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .options input {
@@ -41,4 +44,9 @@
   cursor: pointer;
   text-align: center;
   width: 120px;
+  border: 0;
+}
+
+.selected {
+  background-color: var(--skyblue);
 }

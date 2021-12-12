@@ -3,11 +3,19 @@ import {Injectable} from "@angular/core";
 @Injectable({providedIn: 'root'})
 
 export class GeneralService {
-  public day = 1;
-  public buyValue = 0;
-  public sellValue = 0;
+  day = 1;
+  buyValue = 0;
+  sellValue = 0;
+  transactions: any;
 
   constructor() {
+
+    if (localStorage.getItem('TRANSACTIONS')) {
+      this.transactions = JSON.parse(<string>localStorage.getItem('TRANSACTIONS'));
+    } else {
+      localStorage.setItem('TRANSACTIONS', JSON.stringify([]));
+      this.transactions = JSON.parse(<string>localStorage.getItem('TRANSACTIONS'));
+    }
 
     // @ts-ignore
     this.day = localStorage.getItem('MAIN_DAY') ? +localStorage.getItem('MAIN_DAY') : 1;

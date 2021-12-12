@@ -7,8 +7,8 @@ import {GeneralService} from "../../services/general.service";
   styleUrls: ['./cashier.component.css']
 })
 export class CashierComponent {
-  public isRates = false;
-  public isRestr = false;
+  isRates = false;
+  isRestr = false;
 
   constructor(public general: GeneralService) {}
 

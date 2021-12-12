@@ -1,12 +1,17 @@
 <div class="user">
   <div class="options">
     <div class="text-bold">Введите кол-во единиц валюты:</div>
-    <form (ngSubmit)="submit($event)">
-      <input name="number" value="0.00">
-      <div class="btns">
-        <div class="btn">Покупка ({{general.buyValue | number: '1.4-4'}})</div>
-        <div class="btn">Продажа ({{general.sellValue | number: '1.4-4'}})</div>
+    <input name="number" [(ngModel)]="currencyNumber">
+    <div class="btns">
+      <div class="btn" [ngClass]="{'selected': transactionType == 'buy'}" (click)="transactionType = 'buy'">
+        Покупка ({{general.buyValue * currencyNumber | number: '1.4-4'}})
       </div>
-    </form>
+      <div class="btn" [ngClass]="{'selected': transactionType == 'sell'}" (click)="transactionType = 'sell'">
+        Продажа ({{general.sellValue * currencyNumber | number: '1.4-4'}})
+      </div>
+    </div>
+    <div class="btn selected" *ngIf="transactionType" (click)="makeTransaction()">
+      {{transactionType == 'buy' ? 'Купить' : transactionType == 'sell' ? 'Продать' : ''}}
+    </div>
   </div>
 </div>
