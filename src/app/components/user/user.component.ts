@@ -7,6 +7,9 @@ import {GeneralService} from "../../services/general.service";
   styleUrls: ['./user.component.css']
 })
 export class UserComponent {
-  constructor(public general: GeneralService) {
+  constructor(public general: GeneralService) {}
+
+  submit(event: any) {
+
   }
 }

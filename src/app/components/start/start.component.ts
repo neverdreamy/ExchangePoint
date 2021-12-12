@@ -7,11 +7,11 @@ import {GeneralService} from "../../services/general.service";
   styleUrls: ['./start.component.css']
 })
 export class StartComponent {
-  constructor(public general: GeneralService) {
-  }
+  constructor(public general: GeneralService) {}
 
-  public nextDay() {
+  nextDay() {
     this.general.day++;
     this.general.setValues();
+    localStorage.setItem('MAIN_DAY', this.general.day.toString());
   }
 }

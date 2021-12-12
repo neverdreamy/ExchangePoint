@@ -1,10 +1,12 @@
 <div class="user">
   <div class="options">
     <div class="text-bold">Введите кол-во единиц валюты:</div>
-    <input type="text" placeholder="0">
-    <div class="btns">
-      <div class="btn">Покупка ({{general.buyValue | number: '1.4-4'}})</div>
-      <div class="btn">Продажа ({{general.sellValue | number: '1.4-4'}})</div>
-    </div>
+    <form (ngSubmit)="submit($event)">
+      <input name="number" value="0.00">
+      <div class="btns">
+        <div class="btn">Покупка ({{general.buyValue | number: '1.4-4'}})</div>
+        <div class="btn">Продажа ({{general.sellValue | number: '1.4-4'}})</div>
+      </div>
+    </form>
   </div>
 </div>
