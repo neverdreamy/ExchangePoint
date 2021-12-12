@@ -14,4 +14,12 @@ export class StartComponent {
     this.general.setValues();
     localStorage.setItem('MAIN_DAY', this.general.day.toString());
   }
+
+  reset() {
+    const isReset = confirm('Вы уверены, что хотите сбросить настройки и удалить все данные?');
+    if (isReset) {
+      localStorage.clear();
+      location.reload();
+    }
+  }
 }

@@ -13,28 +13,44 @@ export class UserComponent {
   constructor(public general: GeneralService) {}
 
   makeTransaction() {
+    if (isNaN(this.currencyNumber)) {
+      alert('Ошибка: введите число.');
+      return;
+    }
     const today = new Date();
     const date = today.getDate() + '.' + (today.getMonth() + 1) + '.' + today.getFullYear();
-    const time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+    const time =
+      today.getHours().toLocaleString('ru-RU', {minimumIntegerDigits: 2}) + ':' +
+      today.getMinutes().toLocaleString('ru-RU', {minimumIntegerDigits: 2}) + ':' +
+      today.getSeconds().toLocaleString('ru-RU', {minimumIntegerDigits: 2});
     const dateTime = date + ' ' + time;
 
+    debugger;
     if (this.transactionType == 'buy') {
-      this.general.transactions.push({
+      if (this.currencyNumber <= +this.general.restrValue) {
+        this.general.transactions.push({
           date: dateTime,
           type: this.transactionType,
-          amount: (this.general.buyValue * this.currencyNumber).toFixed(2)
+          amount: this.general.buyValue * this.currencyNumber
         });
-      localStorage.setItem('TRANSACTIONS', JSON.stringify(this.general.transactions));
-      alert(`Вы купили ${this.currencyNumber} ед. валюты по курсу ${this.general.buyValue}.\nСумма: ${this.general.buyValue * this.currencyNumber}.\nДата сделки: ${dateTime}.`);
+        localStorage.setItem('TRANSACTIONS', JSON.stringify(this.general.transactions));
+        alert(`Вы купили ${this.currencyNumber} ед. валюты по курсу ${this.general.buyValue}.\nСумма: ${this.general.buyValue * this.currencyNumber}\nДата сделки: ${dateTime}`);
+      } else {
+        alert(`Ошибка: количество валюты в вашей сделке превышает ограничение (${this.general.restrValue})!`);
+      }
     }
     if (this.transactionType == 'sell') {
-      this.general.transactions.push({
-        date: dateTime,
-        type: this.transactionType,
-        amount: (this.general.sellValue * this.currencyNumber).toFixed(2)
-      });
-      localStorage.setItem('TRANSACTIONS', JSON.stringify(this.general.transactions));
-      alert(`Вы продали ${this.currencyNumber} ед. валюты по курсу ${this.general.sellValue}.\nСумма: ${this.general.sellValue * this.currencyNumber}.\nДата сделки: ${dateTime}.`);
+      if (this.currencyNumber <= +this.general.restrValue) {
+        this.general.transactions.push({
+          date: dateTime,
+          type: this.transactionType,
+          amount: this.general.sellValue * this.currencyNumber
+        });
+        localStorage.setItem('TRANSACTIONS', JSON.stringify(this.general.transactions));
+        alert(`Вы продали ${this.currencyNumber} ед. валюты по курсу ${this.general.sellValue}.\nСумма: ${this.general.sellValue * this.currencyNumber}\nДата сделки: ${dateTime}`);
+      } else {
+        alert(`Ошибка: количество валюты в вашей сделке превышает ограничение (${this.general.restrValue})!`);
+      }
     }
   }
 }

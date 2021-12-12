@@ -53,3 +53,35 @@
 .btn-skyblue {
   background-color: var(--skyblue);
 }
+
+.transactions {
+  margin-top: 5px;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  overflow: auto;
+  max-height: 400px;
+}
+
+.transaction {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+}
+
+.transaction .date {
+  width: 300px;
+  text-align: center;
+  border-right: 1px solid black;
+}
+
+.transaction .type {
+  width: 100px;
+  text-align: center;
+  border-right: 1px solid black;
+}
+
+.transaction .amount {
+  width: 200px;
+  text-align: center;
+}

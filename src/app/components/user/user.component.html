@@ -2,12 +2,12 @@
   <div class="options">
     <div class="text-bold">Введите кол-во единиц валюты:</div>
     <input name="number" [(ngModel)]="currencyNumber">
-    <div class="btns">
+    <div class="btns" *ngIf="currencyNumber > 0">
       <div class="btn" [ngClass]="{'selected': transactionType == 'buy'}" (click)="transactionType = 'buy'">
-        Покупка ({{general.buyValue * currencyNumber | number: '1.4-4'}})
+        Покупка ({{general.buyValue * currencyNumber | number: '1.2-2'}})
       </div>
       <div class="btn" [ngClass]="{'selected': transactionType == 'sell'}" (click)="transactionType = 'sell'">
-        Продажа ({{general.sellValue * currencyNumber | number: '1.4-4'}})
+        Продажа ({{general.sellValue * currencyNumber | number: '1.2-2'}})
       </div>
     </div>
     <div class="btn selected" *ngIf="transactionType" (click)="makeTransaction()">
