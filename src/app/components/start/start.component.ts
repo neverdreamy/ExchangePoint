@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {GeneralService} from "../../services/general.service";
+import {TransactionsService} from "../../services/transactions.service";
 
 @Component({
   selector: 'start',
@@ -7,12 +8,15 @@ import {GeneralService} from "../../services/general.service";
   styleUrls: ['./start.component.css']
 })
 export class StartComponent {
-  constructor(public general: GeneralService) {}
+  constructor(
+    public general: GeneralService,
+    public transactionsService: TransactionsService
+  ) {}
 
   nextDay() {
     this.general.day++;
-    this.general.setValues();
-    localStorage.setItem('MAIN_DAY', this.general.day.toString());
+    this.transactionsService.setValues();
+    localStorage.setItem('DAY', this.general.day.toString());
   }
 
   reset() {

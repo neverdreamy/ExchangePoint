@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {GeneralService} from "../../services/general.service";
+import {TransactionsService} from "../../services/transactions.service";
 
 @Component({
   selector: 'cashier',
@@ -7,44 +8,47 @@ import {GeneralService} from "../../services/general.service";
   styleUrls: ['./cashier.component.css']
 })
 export class CashierComponent {
-  isRates = false;
-  isRestr = false;
-  isTrans = false;
+  isRates: boolean = false;
+  isRestriction: boolean = false;
+  isHistory: boolean = false;
 
-  constructor(public general: GeneralService) {}
+  constructor(
+    public general: GeneralService,
+    public transactionsService: TransactionsService
+  ) {}
 
   changeRates() {
     this.isRates = !this.isRates;
-    this.isRestr ? this.isRestr = false : '';
-    this.isTrans ? this.isTrans = false : '';
+    this.isRestriction ? this.isRestriction = false : '';
+    this.isHistory ? this.isHistory = false : '';
   }
 
-  changeRestr() {
-    this.isRestr = !this.isRestr;
+  changeRestriction() {
+    this.isRestriction = !this.isRestriction;
     this.isRates ? this.isRates = false : '';
-    this.isTrans ? this.isTrans = false : '';
+    this.isHistory ? this.isHistory = false : '';
   }
 
   getHistory() {
-    this.isTrans = !this.isTrans;
     this.isRates ? this.isRates = false : '';
-    this.isRestr ? this.isRestr = false : '';
+    this.isRestriction ? this.isRestriction = false : '';
+    this.isHistory = !this.isHistory;
   }
 
   submitRates(event: any) {
     if (!isNaN(event.target.buy.value) && !isNaN(event.target.sell.value)) {
       alert(`Курс изменен!\nПокупка: ${event.target.buy.value}\nПродажа: ${event.target.sell.value}`);
-      this.general.setValues(event.target.buy.value, event.target.sell.value);
+      this.transactionsService.setValues(event.target.buy.value, event.target.sell.value);
     } else {
       alert('Ошибка: введите число.');
       return;
     }
   }
 
-  submitRestr(event: any) {
+  submitRestriction(event: any) {
     if (!isNaN(event.target.restr.value)) {
       alert(`Ограничение на максимальное кол-во единиц валюты за одну сделку изменено!\nНовое значение: ${event.target.restr.value}`);
-      this.general.setRestr(event.target.restr.value);
+      this.transactionsService.setRestriction(event.target.restr.value);
     } else {
       alert('Ошибка: введите число.');
       return;

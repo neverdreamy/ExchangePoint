@@ -2,7 +2,7 @@
   <div class="options">
     <div class="btns">
       <div class="btn" (click)="changeRates()">Изменить курс</div>
-      <div class="btn" (click)="changeRestr()">Изменить ограничения</div>
+      <div class="btn" (click)="changeRestriction()">Изменить ограничения</div>
       <div class="btn" (click)="getHistory()">История операций</div>
     </div>
     <div class="selected" *ngIf="isRates">
@@ -15,21 +15,21 @@
         <button type="submit" class="btn btn-skyblue">Изменить</button>
       </form>
     </div>
-    <div class="selected" *ngIf="isRestr">
+    <div class="selected" *ngIf="isRestriction">
       <div class="text-bold">Установите ограничение:</div>
-      <form (ngSubmit)="submitRestr($event)">
-        <input name="restr" value="{{general.restrValue}}">
+      <form (ngSubmit)="submitRestriction($event)">
+        <input name="restr" value="{{general.restrictionValue}}">
         <button type="submit" class="btn btn-skyblue">Изменить</button>
       </form>
     </div>
   </div>
-  <div class="transactions" *ngIf="isTrans">
+  <div class="transactions" *ngIf="isHistory">
     <div class="transaction text-bold">
       <div class="date">Дата</div>
       <div class="type">Тип</div>
       <div class="amount">Сумма</div>
     </div>
-    <div class="transaction" *ngFor="let transaction of general.transactions.reverse()">
+    <div class="transaction" *ngFor="let transaction of general.transactions">
       <div class="date">{{transaction.date}}</div>
       <div class="type">{{transaction.type == 'buy' ? 'Покупка' : transaction.type == 'sell' ? 'Продажа' : ''}}</div>
       <div class="amount">{{transaction.amount | number: '1.2-2'}}</div>
